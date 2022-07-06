@@ -8,6 +8,7 @@ import (
 )
 
 var ErrCannotConnetToNode = errors.New("Check if your node(Ipfs daemon) is running. Cannot connect with node")
+var ErrCidNotPinned = errors.New("The cid specified isn't pinned")
 
 func main() {
 	ipfs := goIpfs.NewLocalShell()
@@ -19,4 +20,17 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// view pins
+	pins, err := ipfs.Pins()
+	if err != nil {
+		log.Println(err)
+	}
+
+	if pins[path].Type == "" {
+		log.Println(ErrCidNotPinned)
+	} else {
+		log.Printf("%s Pin-Type: %s", path, pins[path].Type)
+	}
+
 }
