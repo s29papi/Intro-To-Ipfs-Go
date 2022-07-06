@@ -5,4 +5,4 @@
          * Pin
          * Remove
 
-### N.B All files used with the command s above are stored in the files folder.
+### N.B All files used with the commands above are stored in the files folder.
